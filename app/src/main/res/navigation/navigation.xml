@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/shoppingList">
+
+    <fragment
+        android:id="@+id/itemDisplay"
+        android:name="com.example.superlist.ItemDisplay"
+        android:label="fragment_item_display"
+        tools:layout="@layout/fragment_item_display" />
+    <fragment
+        android:id="@+id/shoppingList"
+        android:name="com.example.superlist.ShoppingList"
+        android:label="fragment_shopping_list"
+        tools:layout="@layout/fragment_shopping_list" >
+        <action
+            android:id="@+id/action_shoppingList_to_itemDisplay"
+            app:destination="@id/itemDisplay" />
+    </fragment>
+</navigation>
