@@ -2,6 +2,7 @@ package com.example.superlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -33,14 +34,16 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = ItemViewModelFactory(dataSource, application)
 
         // Generate an IntersectionViewModel using the factory.
-        val intersectionViewModel =
+        val itemViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(ItemViewModel::class.java)
 
         // Connect the IntersectionViewModel with the variable in the layout
-        binding.itemViewModel = intersectionViewModel
+        binding.itemViewModel = itemViewModel
         // Assign the lifecycle owner to the activity so it manages the data accordingly.
         binding.lifecycleOwner = this
 
+        val toast = Toast.makeText(applicationContext, itemViewModel.toStringg(), Toast.LENGTH_LONG)
+        toast.show()
     }
 }

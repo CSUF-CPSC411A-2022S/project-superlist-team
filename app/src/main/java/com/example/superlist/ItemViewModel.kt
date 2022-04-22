@@ -15,7 +15,7 @@ class ItemViewModel(
     application: Application) : AndroidViewModel(application) {
 
     var name = MutableLiveData("")
-    var price = MutableLiveData(0.0)
+    var price = MutableLiveData("")
 
     // Retrieves all Intersection objects from the database
     // Represented as a LiveData<List<Intersection>>
@@ -38,7 +38,21 @@ class ItemViewModel(
         // Returns the aggregated String that is wrapped by the map function in a LiveData object.
         result
     }
+    fun toStringg(): String {
+        var result = ""
+        Transformations.map(database.getAllItems()) { items -> // intersections refer to the underlying data List<Item>
 
+            // Retrieve each Intersection object from the list
+            for (item in items) {
+                // Create a string using the Intersection name and price.
+                // The intersection string is appended to a longer string with all intersections.
+                result += "${item.name} @ ${item.price}\n"
+                }
+            }
+            // Returns the aggregated String that is wrapped by the map function in a LiveData object.
+            return result
+
+    }
     /**
      * Inserts the Intersection object into the database.
      */
@@ -49,7 +63,7 @@ class ItemViewModel(
             // Create Intersection object using data stored in the EditText views
             var item = Item()
             item.name = name.value.toString()
-            item.price = price.value?.toDouble()!!
+            item.price = price.value.toString()
 
             // Insert data to the database using the insert coroutine.
             database.insert(item)

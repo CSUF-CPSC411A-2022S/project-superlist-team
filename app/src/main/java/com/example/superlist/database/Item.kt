@@ -20,5 +20,5 @@ data class Item (
 
     // Non-rprimary key column. Data type is specified in the property.
     @ColumnInfo()
-    var price: Double = 0.0
+    var price: String = ""
 )
