@@ -3,6 +3,12 @@ buildscript {
     ext {
         navigationVersion = "2.3.5"
         room_version = '2.4.0-alpha03'
+
+        // Required for setting retrofit version
+        version_retrofit = "2.9.0"
+        // Required for setting moshi version
+        version_moshi = "1.8.0"
+
     }
 
     dependencies {
