@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
+import com.example.superlist.database.ItemDao
 import com.example.superlist.databinding.FragmentShoppingListBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +27,8 @@ class ShoppingList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentShoppingListBinding.inflate(layoutInflater)
-        binding.button.setOnClickListener { view: View ->
+
+        binding.add.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(R.id.action_shoppingList_to_itemDisplay)
         }
@@ -61,6 +64,7 @@ class ShoppingList : Fragment() {
 //            })
 
 
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false)
+//        return inflater.inflate(R.layout.fragment_shopping_list, container, false)
+        return binding.root
     }
 }
