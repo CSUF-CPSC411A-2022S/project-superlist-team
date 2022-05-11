@@ -14,7 +14,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/food.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/fragment_item_display.xml" value="0.10104166666666667" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.26902173913043476" />
+        <entry key="app/src/main/res/layout/fragment_picture.xml" value="0.26902173913043476" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.10104166666666667" />
       </map>
     </option>
