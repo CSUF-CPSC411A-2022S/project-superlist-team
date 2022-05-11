@@ -61,22 +61,22 @@ class ShoppingList : Fragment() {
         })
 //        print(itemViewModel.database.getAll().get(0))
 
-        Search.SearchAPI.Api.retrofitService.searchWalmart("chicken noodle soup").enqueue(
-            object : javax.security.auth.callback.Callback, Callback<SearchData> {
-                override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
-                    // We can access the properties of the Place object, but use safe calls
-                    // to avoid issues.
-                    System.out.println("searchWalmart succeeded")
-                    Log.d("searchWalmart", response.toString())
-                    println("${response.body()?.organic_results?.get(0)?.title} ${response.body()?.organic_results?.get(0)?.thumbnail} ${response.body()?.organic_results?.get(0)?.primary_offer?.offer_price}")
-                  //  println("${response.body()?.type} ${response.body()?.products?.get(0)?.title} ${response.body()?.products?.get(0)?.image}")
-                }
-
-                override fun onFailure(call: Call<SearchData>, t: Throwable) {
-                    println("Failure ${t.message}")
-
-                }
-            })
+//        Search.SearchAPI.Api.retrofitService.searchWalmart("chicken noodle soup").enqueue(
+//            object : javax.security.auth.callback.Callback, Callback<SearchData> {
+//                override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
+//                    // We can access the properties of the Place object, but use safe calls
+//                    // to avoid issues.
+//                    System.out.println("searchWalmart succeeded")
+//                    Log.d("searchWalmart", response.toString())
+//                    println("${response.body()?.organic_results?.get(0)?.title} ${response.body()?.organic_results?.get(0)?.thumbnail} ${response.body()?.organic_results?.get(0)?.primary_offer?.offer_price}")
+//                  //  println("${response.body()?.type} ${response.body()?.products?.get(0)?.title} ${response.body()?.products?.get(0)?.image}")
+//                }
+//
+//                override fun onFailure(call: Call<SearchData>, t: Throwable) {
+//                    println("Failure ${t.message}")
+//
+//                }
+//            })
 
 //        Food.FoodAPI.Api.retrofitService.getNutrition("1003464").enqueue(
 //            object : javax.security.auth.callback.Callback, Callback<Nutrition> {
