@@ -1,10 +1,7 @@
 package com.example.superlist.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 /**
  * Data access object for the Intersection entity. The class describes how data is
@@ -38,4 +35,6 @@ interface ItemDao {
     // We use suspend to run the function asynchronously (coroutine).
     @Query("DELETE from item_table")
     suspend fun clear()
+
+
 }
