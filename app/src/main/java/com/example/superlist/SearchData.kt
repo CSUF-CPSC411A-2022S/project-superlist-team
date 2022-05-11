@@ -2,24 +2,6 @@ package com.example.superlist
 
 import com.squareup.moshi.Json
 
-data class ImageSearch(
-    val type: String,
-    val images: Array<Image>,
-    val number: Double,
-    val totalImages: Double,
-    val processingTimeMs: Double,
-    val expires: Double
-
-)
-
-
-data class Image (
-    val id: Double,
-    val title: String,
-    val image: String,
-    val imageType: String
-)
-
 data class SearchData (
     val search_metadata: search_metadata,
     val search_parameters: search_parameters,
@@ -73,7 +55,8 @@ data class organic_result (
     val reviews: Double,
     val seller_id: String,
     val seller_name: String,
-    val fulfillment_badges: Array<String>,
+    @field:Json(name = "fulfillment_badge") val fulfillment_badge: String?,
+    @field:Json(name = "fulfillment_badges") val fulfillment_badges: Array<String>?,
     val two_day_shipping: Boolean,
     val out_of_stock: Boolean,
     val sponsored: Boolean,

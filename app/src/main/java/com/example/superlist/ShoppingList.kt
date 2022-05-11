@@ -61,7 +61,7 @@ class ShoppingList : Fragment() {
         })
 //        print(itemViewModel.database.getAll().get(0))
 
-        Picture.PictureAPI.Api.retrofitService.searchWalmart("chicken noodle soup").enqueue(
+        Search.SearchAPI.Api.retrofitService.searchWalmart("chicken noodle soup").enqueue(
             object : javax.security.auth.callback.Callback, Callback<SearchData> {
                 override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
                     // We can access the properties of the Place object, but use safe calls

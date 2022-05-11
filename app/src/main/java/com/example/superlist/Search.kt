@@ -1,28 +1,16 @@
 package com.example.superlist
 
-import androidx.lifecycle.viewModelScope
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
 import retrofit2.http.Query
-import java.net.HttpURLConnection
-import java.net.URL
-import java.net.URI
-import java.net.URLEncoder
-import javax.security.auth.callback.Callback
 
 
-class Picture {
-    companion object PictureAPI {
+class Search {
+    companion object SearchAPI {
         private const val BASE_URL = "https://serpapi.com/"
         const val api_key = "19ce4c10251f9314952a03de75a5cbb631435be25e3d11862664534a68d35b72"
 
@@ -34,7 +22,7 @@ class Picture {
             .baseUrl(BASE_URL)
             .build()
 
-        interface PictureAPIService {
+        interface SearchAPIService {
             /**
              * Retrieves a valid address that closely matches the search string.
              *
@@ -51,28 +39,16 @@ class Picture {
              * @param token access token
              * @return Place object built from the API data
              */
-            //https://serpapi.com/search.json?engine=walmart&query=Coffee&api_key=19ce4c10251f9314952a03de75a5cbb631435be25e3d11862664534a68d35b72
             @GET("search.json")
             fun searchWalmart(@Query("query") query: String,
                               @Query("engine") engine: String = "walmart",
-                              @Query("apiKey") apiKey: String = api_key):
+                              @Query("api_key") apiKey: String = api_key):
                     Call<SearchData>
-
-            @GET("picture/images/search")
-            fun getImageSearch(@Query("query") search: String,
-                                 @Query("number") number: String = "1",
-                                 @Query("apiKey") apiKey: String = api_key):
-                    Call<String>
-
-            @GET("price/{search_string}/item_price.json")
-            fun getItemPrice(@Path(value = "search_string") search: String,
-                             @Query("apiKey") apiKey: String = api_key):
-                    Call<String>
         }
 
         object Api {
-            val retrofitService: PictureAPIService by lazy {
-                retrofit.create(PictureAPIService::class.java)
+            val retrofitService: SearchAPIService by lazy {
+                retrofit.create(SearchAPIService::class.java)
             }
         }
     }
