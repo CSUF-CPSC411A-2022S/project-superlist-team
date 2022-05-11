@@ -18,5 +18,12 @@
         <action
             android:id="@+id/action_shoppingList_to_itemDisplay"
             app:destination="@id/itemDisplay" />
+        <action
+            android:id="@+id/action_shoppingList_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.superlist.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

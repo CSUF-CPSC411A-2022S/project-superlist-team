@@ -35,7 +35,7 @@ class ShoppingList : Fragment() {
 
         binding.add.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(R.id.action_shoppingList_to_itemDisplay)
+                .navigate(R.id.action_shoppingList_to_searchFragment)
         }
 
         // Get reference to this application

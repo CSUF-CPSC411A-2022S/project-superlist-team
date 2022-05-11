@@ -1,59 +1,75 @@
 package com.example.superlist
 
+import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.example.superlist.database.ItemDatabase
+import com.example.superlist.databinding.FragmentSearchBinding
+import com.example.superlist.databinding.FragmentShoppingListBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val binding = FragmentSearchBinding.inflate(layoutInflater)
+
+        binding.button.setOnClickListener { view: View ->
+//            searchAPI()
+            val searchString = binding.editTextSearch.text.toString()
+            Search.SearchAPI.Api.retrofitService.searchWalmart(searchString).enqueue(
+                object : javax.security.auth.callback.Callback, Callback<SearchData> {
+                    override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
+                        Log.d("searchWalmart", response.toString())
+                        for (result in response.body()?.organic_results!!) {
+                            binding.list.text = binding.list.text.toString() + "\n $${result.primary_offer.offer_price} - ${result.title}"
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SearchData>, t: Throwable) {
+                        println("Failure ${t.message}")
+
+                    }
+                })
+
+        }
+
+        // Get reference to this application
+        val application = requireNotNull(this).activity?.applicationContext
+
+        // Retrieve Intersection data access object.
+        val dataSource = ItemDatabase.getInstance(application as Application).itemDao
+
+        // Create a factory that generates IntersectionViewModels connected to the database.
+        val viewModelFactory = ItemViewModelFactory(dataSource, application as Application)
+
+        // Generate an IntersectionViewModel using the factory.
+        val itemViewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(ItemViewModel::class.java)
+        binding.itemViewModel = itemViewModel
+        binding.lifecycleOwner = this
+
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun searchAPI(searchString: String) {
+
     }
 }
