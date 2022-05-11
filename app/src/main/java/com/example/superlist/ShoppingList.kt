@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.superlist.database.ItemDao
@@ -51,6 +52,14 @@ class ShoppingList : Fragment() {
                 this, viewModelFactory).get(ItemViewModel::class.java)
         binding.itemViewModel = itemViewModel
         binding.lifecycleOwner = this
+        println("asdf123")
+        itemViewModel.itemString.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                println("observer called")
+                binding.asdf.text = it.toString()
+            }
+        })
+//        print(itemViewModel.database.getAll().get(0))
 
 //        Food.FoodAPI.Api.retrofitService.getProductByName("chicken noodle soup").enqueue(
 //            object : javax.security.auth.callback.Callback, Callback<ProductSearch> {

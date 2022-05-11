@@ -38,9 +38,13 @@ class MainActivity : AppCompatActivity() {
                 this, viewModelFactory).get(ItemViewModel::class.java)
 
         // Connect the IntersectionViewModel with the variable in the layout
-//        binding.itemViewModel = itemViewModel
+//        binding.item = itemViewModel
         // Assign the lifecycle owner to the activity so it manages the data accordingly.
 //        binding.lifecycleOwner = this
+
+
+
+
 
     }
     override fun onSupportNavigateUp(): Boolean {

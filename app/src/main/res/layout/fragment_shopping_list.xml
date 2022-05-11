@@ -24,7 +24,7 @@ tools:context=".ShoppingList">
 
 
 <Button
-    android:id="@+id/button_2"
+    android:id="@+id/view_list"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#03A9F4"
@@ -41,7 +41,7 @@ tools:context=".ShoppingList">
     app:layout_constraintVertical_bias="0.976" />
 
 <Button
-    android:id="@+id/button"
+    android:id="@+id/create_new"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="#03A9F4"
@@ -72,41 +72,46 @@ tools:context=".ShoppingList">
         android:textColor="@color/black"
         android:textSize="26dp"
         />
+
     <EditText
-        android:layout_below="@id/textView"
         android:id="@+id/editText"
-        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
         android:hint="Add an Item"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"/>
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1"
-        android:orientation="horizontal"
         android:layout_below="@id/editText"
-        android:padding="10dp">
+        android:orientation="horizontal"
+        android:padding="8dp">
+
         <Button
             android:id="@+id/add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add" />
+
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:layout_marginLeft="70dp"
-            android:onClick="@{()-> itemViewModel.insert()}"
-            />
+            android:layout_marginLeft="60dp"
+            android:onClick="@{()-> itemViewModel.delete()}"
+            android:text="Delete" />
+
         <Button
             android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Clear"
-            android:layout_marginLeft="60dp"/>
+            android:layout_marginLeft="50dp"
+            android:onClick="@{()-> itemViewModel.clear()}"
+            android:text="Clear" />
     </LinearLayout>
 
     <TextView
@@ -119,6 +124,7 @@ tools:context=".ShoppingList">
         android:text="Shopping List"
         android:textColor="@color/black"
         android:textSize="20dp" />
+
     <TextView
         android:id="@+id/asdf"
         android:layout_width="match_parent"

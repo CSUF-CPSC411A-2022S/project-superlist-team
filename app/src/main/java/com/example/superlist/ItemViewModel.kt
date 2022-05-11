@@ -14,7 +14,7 @@ class ItemViewModel(
     val database: ItemDao, // Data access object for the Intersection entity
     application: Application) : AndroidViewModel(application) {
 
-    var name = MutableLiveData("test")
+    var name = MutableLiveData("")
     var price = MutableLiveData(0.0)
 
     // Retrieves all Intersection objects from the database
@@ -72,4 +72,14 @@ class ItemViewModel(
             database.clear()
         }
     }
+
+    fun delete() {
+        // Launch coroutines in the viewModelScope so that the coroutines are automatically
+        // canceled when the ViewModel is destroyed.
+        viewModelScope.launch {
+            // Delete data from the database using the clear coroutine.
+            database.clear()
+        }
+    }
+
 }
