@@ -52,21 +52,22 @@ class ShoppingList : Fragment() {
         binding.itemViewModel = itemViewModel
         binding.lifecycleOwner = this
 
-//        Food.FoodAPI.Api.retrofitService.getProductByName("chicken noodle soup").enqueue(
-//            object : javax.security.auth.callback.Callback, Callback<ProductSearch> {
-//                override fun onResponse(call: Call<ProductSearch>, response: Response<ProductSearch>) {
-//                    // We can access the properties of the Place object, but use safe calls
-//                    // to avoid issues.
-//                    System.out.println("getProductByName succeeded")
-//                    Log.d("getProductByName", response.toString())
-//                    println("${response.body()?.type} ${response.body()?.products?.get(0)?.title} ${response.body()?.products?.get(0)?.image}")
-//                }
-//
-//                override fun onFailure(call: Call<ProductSearch>, t: Throwable) {
-//                    println("Failure ${t.message}")
-//
-//                }
-//            })
+        Picture.PictureAPI.Api.retrofitService.searchWalmart("chicken noodle soup").enqueue(
+            object : javax.security.auth.callback.Callback, Callback<SearchData> {
+                override fun onResponse(call: Call<SearchData>, response: Response<SearchData>) {
+                    // We can access the properties of the Place object, but use safe calls
+                    // to avoid issues.
+                    System.out.println("searchWalmart succeeded")
+                    Log.d("searchWalmart", response.toString())
+                    println("${response.body()?.organic_results?.get(0)?.title} ${response.body()?.organic_results?.get(0)?.thumbnail} ${response.body()?.organic_results?.get(0)?.primary_offer?.offer_price}")
+                  //  println("${response.body()?.type} ${response.body()?.products?.get(0)?.title} ${response.body()?.products?.get(0)?.image}")
+                }
+
+                override fun onFailure(call: Call<SearchData>, t: Throwable) {
+                    println("Failure ${t.message}")
+
+                }
+            })
 
 //        Food.FoodAPI.Api.retrofitService.getNutrition("1003464").enqueue(
 //            object : javax.security.auth.callback.Callback, Callback<Nutrition> {
