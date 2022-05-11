@@ -72,14 +72,4 @@ class ItemViewModel(
             database.clear()
         }
     }
-
-    fun delete() {
-        // Launch coroutines in the viewModelScope so that the coroutines are automatically
-        // canceled when the ViewModel is destroyed.
-        viewModelScope.launch {
-            // Delete data from the database using the clear coroutine.
-            database.clear()
-        }
-    }
-
 }
