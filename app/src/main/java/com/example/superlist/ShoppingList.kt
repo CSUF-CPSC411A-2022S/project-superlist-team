@@ -1,5 +1,6 @@
 package com.example.superlist
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.superlist.database.ItemDao
+import com.example.superlist.database.ItemDatabase
 import com.example.superlist.databinding.FragmentShoppingListBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +36,21 @@ class ShoppingList : Fragment() {
                 .navigate(R.id.action_shoppingList_to_itemDisplay)
         }
 
+        // Get reference to this application
+        val application = requireNotNull(this).activity?.applicationContext
+
+        // Retrieve Intersection data access object.
+        val dataSource = ItemDatabase.getInstance(application as Application).itemDao
+
+        // Create a factory that generates IntersectionViewModels connected to the database.
+        val viewModelFactory = ItemViewModelFactory(dataSource, application as Application)
+
+        // Generate an IntersectionViewModel using the factory.
+        val itemViewModel =
+            ViewModelProvider(
+                this, viewModelFactory).get(ItemViewModel::class.java)
+        binding.itemViewModel = itemViewModel
+        binding.lifecycleOwner = this
 
 //        Food.FoodAPI.Api.retrofitService.getProductByName("chicken noodle soup").enqueue(
 //            object : javax.security.auth.callback.Callback, Callback<ProductSearch> {

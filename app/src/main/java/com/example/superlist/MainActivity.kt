@@ -33,14 +33,14 @@ class MainActivity : AppCompatActivity() {
         val viewModelFactory = ItemViewModelFactory(dataSource, application)
 
         // Generate an IntersectionViewModel using the factory.
-        val intersectionViewModel =
+        val itemViewModel =
             ViewModelProvider(
                 this, viewModelFactory).get(ItemViewModel::class.java)
 
         // Connect the IntersectionViewModel with the variable in the layout
-        binding.itemViewModel = intersectionViewModel
+//        binding.itemViewModel = itemViewModel
         // Assign the lifecycle owner to the activity so it manages the data accordingly.
-        binding.lifecycleOwner = this
+//        binding.lifecycleOwner = this
 
     }
     override fun onSupportNavigateUp(): Boolean {

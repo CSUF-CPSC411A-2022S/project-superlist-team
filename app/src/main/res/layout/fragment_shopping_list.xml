@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <!-- IntersectionViewModel variable used by the view to manage data -->
+    <variable
+        name="itemViewModel"
+        type="com.example.superlist.ItemViewModel" />
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".ShoppingList">
+
+
 
 <!-- TODO: Update blank fragment layout -->
 <TextView
@@ -88,7 +98,9 @@ tools:context=".ShoppingList">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete"
-            android:layout_marginLeft="70dp"/>
+            android:layout_marginLeft="70dp"
+            android:onClick="@{()-> itemViewModel.insert()}"
+            />
         <Button
             android:id="@+id/clear"
             android:layout_width="wrap_content"
@@ -101,23 +113,34 @@ tools:context=".ShoppingList">
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout1"
         android:gravity="center"
         android:padding="10dp"
-        android:layout_below="@id/linearLayout1"
         android:text="Shopping List"
-        android:textSize="20dp"
         android:textColor="@color/black"
-        />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:textSize="20dp" />
+    <TextView
+        android:id="@+id/asdf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView1"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-1dp"
-        android:choiceMode="multipleChoice" />
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@{itemViewModel.itemString}"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
+
+<!--    <ListView-->
+<!--        android:id="@+id/listView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@id/textView1"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginBottom="-1dp"-->
+<!--        android:choiceMode="multipleChoice" />-->
+
 
 </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

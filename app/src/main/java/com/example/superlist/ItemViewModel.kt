@@ -14,12 +14,13 @@ class ItemViewModel(
     val database: ItemDao, // Data access object for the Intersection entity
     application: Application) : AndroidViewModel(application) {
 
-    var name = MutableLiveData("")
+    var name = MutableLiveData("test")
     var price = MutableLiveData(0.0)
 
     // Retrieves all Intersection objects from the database
     // Represented as a LiveData<List<Intersection>>
     val itemList = database.getAllItems()
+
 
     /**
      * Creates a LiveData<String> that contains information from all Intersection objects.
@@ -28,7 +29,8 @@ class ItemViewModel(
      */
     var itemString = Transformations.map(itemList) {
         items -> // intersections refer to the underlying data List<Item>
-        var result = ""
+        println("Stringifying the list")
+        var result = "List: "
         // Retrieve each Intersection object from the list
         for (item in items) {
             // Create a string using the Intersection name and price.
@@ -45,11 +47,13 @@ class ItemViewModel(
     fun insert() {
         // Launch coroutines in the viewModelScope so that the coroutines are automatically
         // canceled when the ViewModel is destroyed.
+        println("inserting into thingy")
         viewModelScope.launch {
             // Create Intersection object using data stored in the EditText views
             var item = Item()
             item.name = name.value.toString()
             item.price = price.value?.toDouble()!!
+            println("inserting into thingy 2")
 
             // Insert data to the database using the insert coroutine.
             database.insert(item)
