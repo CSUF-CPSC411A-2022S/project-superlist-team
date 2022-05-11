@@ -12,7 +12,7 @@ interface ItemDao {
     // Add an intersection entity to a table in the database.
     // We use suspend to run the function asynchronously (coroutine).
     @Insert
-    suspend fun insert(item: com.example.superlist.database.Item)
+    suspend fun insert(item: Item)
 
     // Update an intersection entity to a table in the database. Often uses the primary key
     // We use suspend to run the function asynchronously (coroutine).
@@ -36,7 +36,5 @@ interface ItemDao {
     @Query("DELETE from item_table")
     suspend fun clear()
 
-    @Delete
-    suspend fun delete(item: Item)
 
 }
