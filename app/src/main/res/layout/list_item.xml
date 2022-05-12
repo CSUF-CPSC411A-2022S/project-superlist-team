@@ -12,7 +12,7 @@ xmlns:tools="http://schemas.android.com/tools">
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:background="#CF9D8D"
+    android:background="#9F7BE1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
