@@ -9,28 +9,34 @@
         type="com.example.superlist.ItemViewModel" />
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#A9C2D2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
+    tools:context=".SearchFragment"><![CDATA[
+
+
+
+    />
+
+
+
+    ]]>
 
     <EditText
         android:id="@+id/editTextSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Search"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.128" /><![CDATA[
-
-    />
-
-    ]]>
+        app:layout_constraintVertical_bias="0.127" />
 
     <Button
         android:id="@+id/button"

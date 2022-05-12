@@ -137,8 +137,7 @@ class ShoppingList : Fragment() {
 //            })
 
 //        return inflater.inflate(R.layout.fragment_shopping_list, container, false)
-        val imageView = binding.imageView3
-        Glide.with(this).load("https://i5.walmartimages.com/asr/5c52eaee-e372-4f74-aa4a-ec9420dddacf_1.04efc7490b601d0b1ace3aeac6fa2f94.jpeg?odnHeight=200&odnWidth=200&odnBg=ffffff").override(300, 200).into(imageView)
+        
         return binding.root
 
     }

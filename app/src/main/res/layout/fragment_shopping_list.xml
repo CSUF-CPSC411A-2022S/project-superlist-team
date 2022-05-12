@@ -24,155 +24,117 @@ tools:context=".ShoppingList">
     android:text="@string/hello_blank_fragment" />
 
 
-<Button
-    android:id="@+id/view_list"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#03A9F4"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:text="View Lists"
-    android:textColor="@android:color/background_light"
-    android:textSize="24sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.05"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.976" />
-
-<Button
-    android:id="@+id/create_new"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="#03A9F4"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:text="Create New"
-    android:textColor="@android:color/background_light"
-    android:textSize="24sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.928"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.976" />
-
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/white">
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="SuperList"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add" />
-
-        <Button
-            android:id="@+id/delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:onClick="@{()-> itemViewModel.delete()}"
-            android:text="Delete" />
-
-        <Button
-            android:id="@+id/clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:onClick="@{()-> itemViewModel.clear()}"
-            android:text="Clear" />
-
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout1"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text="Shopping List"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/asdf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView1"
-        android:gravity="center"
-        android:padding="10dp"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_recyclerview"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/asdf"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:background="#A9C2D2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:context=".MainActivity">
 
-<!--    <ListView-->
-<!--        android:id="@+id/listView"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_below="@id/textView1"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginBottom="-1dp"-->
-<!--        android:choiceMode="multipleChoice" />-->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="SuperList"
+            android:textColor="@color/black"
+            android:textSize="26dp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:onClick="@{()-> itemViewModel.delete()}"
+                android:text="Delete" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:onClick="@{()-> itemViewModel.clear()}"
+                android:text="Clear" />
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/testFoodDisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="testFoodDisplay" />
-    <Button
-        android:id="@+id/buttonTestAddToDB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="200dp"
-        android:text="TestAddToDB"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Shopping List"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            />
 
-        />
+        <TextView
+            android:id="@+id/asdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <!--    <ListView-->
+        <!--        android:id="@+id/listView"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:layout_below="@id/textView1"-->
+        <!--        android:layout_alignParentBottom="true"-->
+        <!--        android:layout_marginBottom="-1dp"-->
+        <!--        android:choiceMode="multipleChoice" />-->
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/asdf"
+            android:layout_marginTop="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <Button
+            android:id="@+id/testFoodDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="testFoodDisplay"
+            android:translationX="10dp"
+            android:translationY="650dp"/>
+
+        <Button
+            android:id="@+id/buttonTestAddToDB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+
+            android:text="TestAddToDB"
+            android:translationX="45dp"
+            android:translationY="650dp" />
 
 
-
-</RelativeLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,6 +12,7 @@ xmlns:tools="http://schemas.android.com/tools">
 </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#CF9D8D"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -24,12 +25,14 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <TextView
         android:id="@+id/name"
         android:layout_width="match_parent"
@@ -38,7 +41,6 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="#72673AB7"
         android:gravity="center_vertical"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
