@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -45,6 +46,8 @@ class ShoppingList : Fragment() {
             view.findNavController()
                 .navigate(R.id.action_shoppingList_to_itemDisplay, bundle)
         }
+
+
         // Get reference to this application
         val application = requireNotNull(this).activity?.applicationContext
 
@@ -64,6 +67,23 @@ class ShoppingList : Fragment() {
             it?.let {
                 println("observer called")
                 binding.asdf.text = it.toString()
+            }
+        })
+
+        binding.buttonTestAddToDB.setOnClickListener { view: View ->
+            val item = Item(itemId = 1, price = 12.0, searchName = "chicken noodle soup", productName = "", thumbnail = "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg", searched=false )
+            itemViewModel.insertTest("chicken noodle soup", 12.0, "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg")
+        }
+
+        var itemListAdapter = ItemListAdapter(requireNotNull(this).activity?.applicationContext!!)
+
+        // Attach intersection adapter.
+        binding.itemRecyclerview.adapter = itemListAdapter
+
+        itemViewModel.itemList.observe(viewLifecycleOwner, Observer {
+            println("itemList changed")
+            it?.let {
+                itemListAdapter.submitList(it)
             }
         })
 //        print(itemViewModel.database.getAll().get(0))
@@ -115,7 +135,6 @@ class ShoppingList : Fragment() {
 //
 //                }
 //            })
-
 
 //        return inflater.inflate(R.layout.fragment_shopping_list, container, false)
         val imageView = binding.imageView3

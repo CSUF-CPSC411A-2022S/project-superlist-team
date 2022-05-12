@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
 <data>
     <!-- IntersectionViewModel variable used by the view to manage data -->
     <variable
@@ -102,6 +103,9 @@ tools:context=".ShoppingList">
             android:layout_marginLeft="50dp"
             android:onClick="@{()-> itemViewModel.clear()}"
             android:text="Clear" />
+
+
+
     </LinearLayout>
 
     <TextView
@@ -122,9 +126,16 @@ tools:context=".ShoppingList">
         android:layout_below="@id/textView1"
         android:gravity="center"
         android:padding="10dp"
-        android:text="@{itemViewModel.itemString}"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/asdf"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 <!--    <ListView-->
 <!--        android:id="@+id/listView"-->
@@ -138,9 +149,9 @@ tools:context=".ShoppingList">
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -148,6 +159,18 @@ tools:context=".ShoppingList">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="testFoodDisplay" />
+    <Button
+        android:id="@+id/buttonTestAddToDB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:text="TestAddToDB"
+
+        />
+
+
+
+
 
 </RelativeLayout>
 

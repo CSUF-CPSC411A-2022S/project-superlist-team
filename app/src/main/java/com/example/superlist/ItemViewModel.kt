@@ -61,6 +61,22 @@ class ItemViewModel(
 
     }
 
+    fun insertTest(searchName: String, price: Double, thumbnail: String) {
+        // Launch coroutines in the viewModelScope so that the coroutines are automatically
+        // canceled when the ViewModel is destroyed.
+        println("inserting into thingy")
+        viewModelScope.launch {
+            // Create Intersection object using data stored in the EditText views
+            var item = Item()
+            item.searchName = searchName
+            item.price = price
+            item.thumbnail = thumbnail
+            // Insert data to the database using the insert coroutine.
+            database.insert(item)
+        }
+
+    }
+
     /**
      * Deletes all Intersection entities in the database.
      */
