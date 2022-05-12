@@ -23,9 +23,13 @@ data class Item (
 
     @ColumnInfo()
     var productName: String = "",
+    @ColumnInfo()
+    var foodName: String = "",
 
     @ColumnInfo()
     var thumbnail: String = "",
+    @ColumnInfo()
+    var thumbnailFood: String = "",
 
     @ColumnInfo()
     var calories: String = "",

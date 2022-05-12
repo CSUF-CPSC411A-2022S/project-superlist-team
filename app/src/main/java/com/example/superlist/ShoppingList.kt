@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -21,6 +24,7 @@ import com.example.superlist.databinding.FragmentShoppingListBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.*
 
 
 class ShoppingList : Fragment() {
@@ -40,12 +44,6 @@ class ShoppingList : Fragment() {
             view.findNavController()
                 .navigate(R.id.action_shoppingList_to_searchFragment)
         }
-        binding.testFoodDisplay.setOnClickListener { view: View ->
-            val item = Item(itemId = 1, price = 12.0, searchName = "chicken noodle soup", productName = "", thumbnail = "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg", searched=false )
-            val bundle = bundleOf("itemId" to item.itemId, "price" to item.price, "searchName" to item.searchName, "productName" to item.productName, "thumbnail" to item.thumbnail, "calories" to item.calories, "carbs" to item.carbs, "protein" to item.protein, "fat" to item.fat, "searched" to item.searched)
-            view.findNavController()
-                .navigate(R.id.action_shoppingList_to_itemDisplay, bundle)
-        }
 
 
         // Get reference to this application
@@ -63,22 +61,40 @@ class ShoppingList : Fragment() {
                 this, viewModelFactory).get(ItemViewModel::class.java)
         binding.itemViewModel = itemViewModel
         binding.lifecycleOwner = this
-        itemViewModel.itemString.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                println("observer called")
-                binding.asdf.text = it.toString()
-            }
-        })
 
-        binding.buttonTestAddToDB.setOnClickListener { view: View ->
-            val item = Item(itemId = 1, price = 12.0, searchName = "chicken noodle soup", productName = "", thumbnail = "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg", searched=false )
-            itemViewModel.insertTest("chicken noodle soup", 12.0, "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg")
-        }
+
 
         var itemListAdapter = ItemListAdapter(requireNotNull(this).activity?.applicationContext!!)
 
         // Attach intersection adapter.
         binding.itemRecyclerview.adapter = itemListAdapter
+
+        binding.itemRecyclerview.getViewTreeObserver()
+            .addOnGlobalLayoutListener(
+                ViewTreeObserver.OnGlobalLayoutListener() {
+                    // At this point the layout is complete and the
+                    // dimensions of recyclerView and any child views
+                    // are known.
+                    val itemCount = itemListAdapter.itemCount
+                    for (i in 0 until itemCount) {
+                        val holder = binding.itemRecyclerview.findViewHolderForAdapterPosition(i)
+
+                        if (holder != null) {
+                            val item = itemListAdapter.getItemFromIndex(i)//Item(itemId = 1, price = 12.0, searchName = "chicken noodle soup", productName = "", thumbnail = "https://www.simplyrecipes.com/thmb/wL2O85jWlNeh-Z6l3Mtbb13MXjQ=/2000x1334/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2019__01__Chicken-Noodle-Soup-LEAD-2-1-ab6c430a6d39457a858fa5dfb1acd811.jpg", searched=false )
+                            holder.itemView.findViewById<ImageView>(R.id.itemImage).setOnClickListener{ view: View ->
+
+                                val bundle = bundleOf("itemId" to item.itemId, "price" to item.price, "searchName" to item.searchName, "productName" to item.productName,"foodName" to item.foodName, "thumbnail" to item.thumbnail, "thumbnailFood" to item.thumbnailFood, "calories" to item.calories, "carbs" to item.carbs, "protein" to item.protein, "fat" to item.fat, "searched" to item.searched)
+                                view.findNavController()
+                                    .navigate(R.id.action_shoppingList_to_itemDisplay, bundle)
+                            }
+                            holder.itemView.findViewById<TextView>(R.id.name).setOnClickListener{ view: View ->
+                                itemViewModel.delete(item)
+                            }
+
+                        }
+                    }
+
+                });
 
         itemViewModel.itemList.observe(viewLifecycleOwner, Observer {
             println("itemList changed")

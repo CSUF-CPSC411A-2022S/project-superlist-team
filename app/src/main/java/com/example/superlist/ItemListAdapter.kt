@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,9 +27,12 @@ class ItemListAdapter(private val context: Context) : ListAdapter<Item,
     class ItemViewHolder(val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         var thumbnail: ImageView
+        var name: TextView
         init {
             thumbnail =
                 binding.root.findViewById<View>(R.id.itemImage) as ImageView
+            name =
+                binding.root.findViewById<View>(R.id.name) as TextView
         }
         /**
          * Assign an intersection object
@@ -41,6 +45,11 @@ class ItemListAdapter(private val context: Context) : ListAdapter<Item,
     /**
      * Creates a View to visualize one element in the RecyclerView.
      */
+
+    fun getItemFromIndex(position: Int) : Item {
+        return this.getItem(position)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         // We use an inflater based on the parent (IntersectionListFragment) and create an
         // ItemViewHolder with binding to the layout to simplify access.
@@ -58,8 +67,14 @@ class ItemListAdapter(private val context: Context) : ListAdapter<Item,
         // is a function provided by ListAdapter.
 
         println("Trying to load thumbnail: ${getItem(position).thumbnail}")
-        Glide.with(context).load(getItem(position).thumbnail).override(300, 200)
+        Glide.with(context).load(getItem(position).thumbnail).override(200, 200)
             .into(holder.thumbnail)
+
+
+        holder.name.text = "$" + getItem(position).price + " - " + getItem(position).searchName
+        if (getItem(position).productName != "") {
+            holder.name.text = holder.name.text.toString() + " (" + getItem(position).productName + ")"
+        }
 
         holder.bind(getItem(position))
     }

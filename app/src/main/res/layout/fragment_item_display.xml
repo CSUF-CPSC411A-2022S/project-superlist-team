@@ -34,71 +34,71 @@
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name: N/A"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Searched for: N/A"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageViewThumbnail"/>
+    <TextView
+        android:id="@+id/textViewFound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Found: N/A"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"/>
     <TextView
         android:id="@+id/textViewPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price: N/A"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFound"
+        />
 
     <TextView
         android:id="@+id/textViewCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Calories: N/A"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrice"/>
 
     <TextView
         android:id="@+id/textViewCarbs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Carbs: N/A"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.393" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCalories"/>
 
     <TextView
         android:id="@+id/textViewProtein"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Protein: N/A"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.419" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCarbs"/>
 
     <TextView
         android:id="@+id/textViewFat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fat: 0k"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewProtein"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
