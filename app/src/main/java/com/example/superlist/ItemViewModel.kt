@@ -35,7 +35,7 @@ class ItemViewModel(
         for (item in items) {
             // Create a string using the Intersection name and price.
             // The intersection string is appended to a longer string with all intersections.
-            result += "${item.name} @ ${item.price}\n"
+            result += "${item.searchName} @ ${item.price}\n"
         }
         // Returns the aggregated String that is wrapped by the map function in a LiveData object.
         result
@@ -51,7 +51,7 @@ class ItemViewModel(
         viewModelScope.launch {
             // Create Intersection object using data stored in the EditText views
             var item = Item()
-            item.name = name.value.toString()
+            item.searchName = name.value.toString()
             item.price = price.value?.toDouble()!!
             println("inserting into thingy 2")
 

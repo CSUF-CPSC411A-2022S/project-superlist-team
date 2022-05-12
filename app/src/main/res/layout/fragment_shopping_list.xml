@@ -143,6 +143,12 @@ tools:context=".ShoppingList">
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <Button
+        android:id="@+id/testFoodDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="testFoodDisplay" />
+
 </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
